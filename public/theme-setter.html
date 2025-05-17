@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Color Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex min-h-screen items-center justify-center bg-gray-900 p-4 text-white">
+    <div class="w-full max-w-5xl">
+      <!-- Header -->
+      <div class="mb-4 md:mb-8 flex items-center justify-between">
+        <h1
+          class="bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-4xl font-bold text-transparent"
+        >
+          ALLSET Template Theme Studio
+        </h1>
+        <a
+          href="/allset/settings"
+          class="flex items-center gap-2 text-gray-400 transition-colors hover:text-white"
+        >
+          <i class="fas fa-arrow-left text-sm"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+
+      <!-- Main content -->
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <!-- Left panel - Current color -->
+        <div class="lg:col-span-1">
+          <div class="h-full rounded-3xl bg-gray-800 p-6">
+            <h2 class="mb-4 text-xl font-semibold text-gray-300">Current Theme</h2>
+
+            <!-- Preview card -->
+            <div class="mb-8 overflow-hidden rounded-2xl" id="preview-container">
+              <div class="h-18 md:h-32 w-full" id="color-preview"></div>
+              <div class="bg-gray-700 p-4">
+                <div class="mb-1 md:mb-4 flex items-center justify-between">
+                  <div class="h-3 w-3 md:h-8 md:w-8 rounded-full bg-slate-100/10"></div>
+                  <div class="flex gap-2">
+                    <div class="h-2 w-2 md:h-6 md:w-6 rounded-full bg-slate-100/10"></div>
+                    <div class="h-2 w-2 md:h-6 md:w-6 rounded-full bg-slate-100/10"></div>
+                  </div>
+                </div>
+                <div class="mb-3 h-2 md:h:3 w-3/4 rounded-full bg-slate-100/10"></div>
+                <div class="h-2 md:h3 w-1/2 rounded-full bg-slate-100/10"></div>
+              </div>
+            </div>
+
+            <!-- Color info -->
+            <div class="mb-3 md:mb-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-sm text-gray-400">HEX</h3>
+                <span
+                  id="color-hex"
+                  class="rounded-lg bg-gray-700 px-3 py-1 font-mono text-lg"
+                ></span>
+              </div>
+            </div>
+
+            <!-- Apply button -->
+            <button
+              id="apply-button"
+              class="w-full rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 py-2 md:py-4 font-medium text-white shadow-lg shadow-indigo-500/30 transition-all hover:from-indigo-600 hover:to-purple-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none"
+            >
+              Apply Theme
+            </button>
+          </div>
+        </div>
+
+        <!-- Right panel - Color selection -->
+        <div class="lg:col-span-2">
+          <div class="rounded-3xl bg-gray-800 p-6">
+            <h2 class="mb-4 text-xl font-semibold text-gray-300">Color Selection</h2>
+
+            <!-- Color palette -->
+            <div class="mb-8">
+              <h3 class="mb-4 text-sm tracking-wider text-gray-400 uppercase">Presets</h3>
+              <div class="grid grid-cols-4 gap-3 md:gap-6 md:grid-cols-5">
+                <!-- Color options -->
+                <button
+                  data-color="#3b82f6"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-blue-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Blue</span
+                  >
+                </button>
+
+                <button
+                  data-color="#ef4444"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-red-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Red</span
+                  >
+                </button>
+
+                <button
+                  data-color="#10b981"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-green-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Green</span
+                  >
+                </button>
+
+                <button
+                  data-color="#f59e0b"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-amber-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Amber</span
+                  >
+                </button>
+
+                <button
+                  data-color="#8b5cf6"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-purple-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Purple</span
+                  >
+                </button>
+
+                <button
+                  data-color="#ec4899"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-pink-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Pink</span
+                  >
+                </button>
+
+                <button
+                  data-color="#06b6d4"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-cyan-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Cyan</span
+                  >
+                </button>
+
+                <button
+                  data-color="#14b8a6"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-teal-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Teal</span
+                  >
+                </button>
+
+                <button
+                  data-color="#f97316"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-orange-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Orange</span
+                  >
+                </button>
+
+                <button
+                  data-color="#6366f1"
+                  class="group relative aspect-square overflow-hidden rounded-2xl border-2 border-transparent transition-transform hover:scale-105 focus:border-white focus:outline-none"
+                >
+                  <div class="absolute inset-0 bg-indigo-500"></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-br from-transparent to-black/30"
+                  ></div>
+                  <span
+                    class="absolute bottom-2 left-2 text-xs font-medium text-white opacity-0 transition-opacity group-hover:opacity-100"
+                    >Indigo</span
+                  >
+                </button>
+              </div>
+            </div>
+
+            <!-- Custom color -->
+            <div>
+              <h3 class="mb-4 text-sm tracking-wider text-gray-400 uppercase">Custom Color</h3>
+              <div class="rounded-xl bg-gray-700/50 p-5">
+                <div class="flex flex-col gap-4 sm:flex-row">
+                  <div class="relative">
+                    <input
+                      type="color"
+                      id="custom-color-picker"
+                      value="#3b82f6"
+                      class="absolute inset-0 z-10 h-12 w-full cursor-pointer opacity-0"
+                    />
+                    <div
+                      class="h-12 w-12 overflow-hidden rounded-lg"
+                      id="color-preview-small"
+                    ></div>
+                  </div>
+                  <div class="flex-grow">
+                    <div class="flex flex-col gap-3 sm:flex-row">
+                      <div class="relative flex-grow">
+                        <span class="absolute top-3 left-3 text-gray-400">#</span>
+                        <input
+                          type="text"
+                          id="custom-color-text"
+                          value="3b82f6"
+                          class="w-full rounded-lg bg-gray-800 py-3 pr-3 pl-8 font-mono text-white focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                        />
+                      </div>
+                      <button
+                        id="custom-color-button"
+                        class="rounded-lg bg-gray-600 px-5 py-3 font-medium text-white transition-colors hover:bg-gray-500 focus:ring-2 focus:ring-gray-400 focus:outline-none"
+                      >
+                        Preview
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification -->
+      <div
+        id="message"
+        class="pointer-events-none fixed bottom-8 left-1/2 flex max-w-md -translate-x-1/2 -translate-y-4 transform items-center gap-3 rounded-xl px-6 py-4 opacity-0 shadow-xl transition-all duration-300"
+      ></div>
+    </div>
+
+    <script>
+      // Elements
+      const colorPreview = document.getElementById('color-preview')
+      const colorPreviewSmall = document.getElementById('color-preview-small')
+      const colorHex = document.getElementById('color-hex')
+      const previewContainer = document.getElementById('preview-container')
+      const colorOptions = document.querySelectorAll('[data-color]')
+      const customColorPicker = document.getElementById('custom-color-picker')
+      const customColorText = document.getElementById('custom-color-text')
+      const customColorButton = document.getElementById('custom-color-button')
+      const applyButton = document.getElementById('apply-button')
+      const messageEl = document.getElementById('message')
+
+      // State
+      let currentColor = '#3b82f6'
+      let selectedColor = '#3b82f6'
+      let isLoading = false
+
+      // Function to update the color preview
+      function updateColorPreview(color) {
+        colorPreview.style.background = `linear-gradient(135deg, ${color}, ${adjustColorBrightness(color, -20)})`
+        colorPreviewSmall.style.background = color
+        colorHex.textContent = color
+        selectedColor = color
+
+        // Update selected state of color options
+        colorOptions.forEach((option) => {
+          if (option.dataset.color.toLowerCase() === color.toLowerCase()) {
+            option.classList.add('ring-2', 'ring-white', 'scale-110')
+          } else {
+            option.classList.remove('ring-2', 'ring-white', 'scale-110')
+          }
+        })
+
+        // Update custom color inputs
+        customColorPicker.value = color
+        customColorText.value = color.replace('#', '')
+      }
+
+      // Helper function to adjust color brightness
+      function adjustColorBrightness(color, percent) {
+        const num = parseInt(color.replace('#', ''), 16)
+        const r = (num >> 16) + percent
+        const g = ((num >> 8) & 0x00ff) + percent
+        const b = (num & 0x0000ff) + percent
+
+        const newR = Math.min(Math.max(0, r), 255)
+        const newG = Math.min(Math.max(0, g), 255)
+        const newB = Math.min(Math.max(0, b), 255)
+
+        return `#${((newR << 16) | (newG << 8) | newB).toString(16).padStart(6, '0')}`
+      }
+
+      // Function to show a message
+      function showMessage(text, isSuccess = true) {
+        messageEl.innerHTML = `
+        <div class="w-6 h-6 flex-shrink-0 ${isSuccess ? 'text-green-400' : 'text-red-400'}">
+          <i class="fas ${isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+        </div>
+        <div>${text}</div>
+      `
+        messageEl.className = `fixed bottom-8 left-1/2 transform -translate-x-1/2 px-6 py-4 rounded-xl shadow-xl transition-all duration-300 opacity-100 translate-y-0 flex items-center gap-3 max-w-md ${isSuccess ? 'bg-gray-800 text-white' : 'bg-red-900 text-white'}`
+
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+          messageEl.classList.add('opacity-0', '-translate-y-4')
+        }, 3000)
+      }
+
+      // Function to set loading state
+      function setLoading(loading) {
+        isLoading = loading
+        if (loading) {
+          previewContainer.classList.add('relative')
+          const loadingOverlay = document.createElement('div')
+          loadingOverlay.id = 'loading-overlay'
+          loadingOverlay.className =
+            'absolute inset-0 bg-gray-900/70 flex items-center justify-center z-10 rounded-2xl'
+          loadingOverlay.innerHTML = `
+          <div class="flex flex-col items-center">
+            <div class="w-8 h-8 border-4 border-t-purple-500 border-purple-500/30 rounded-full animate-spin mb-3"></div>
+            <span class="text-sm text-gray-300">Applying theme...</span>
+          </div>
+        `
+          previewContainer.appendChild(loadingOverlay)
+
+          applyButton.disabled = true
+          applyButton.classList.add('opacity-70', 'cursor-not-allowed')
+        } else {
+          const loadingOverlay = document.getElementById('loading-overlay')
+          if (loadingOverlay) {
+            loadingOverlay.remove()
+          }
+          previewContainer.classList.remove('relative')
+          applyButton.disabled = false
+          applyButton.classList.remove('opacity-70', 'cursor-not-allowed')
+        }
+      }
+
+      // Function to set the theme color
+      async function setThemeColor(color) {
+        if (isLoading) return
+
+        setLoading(true)
+        try {
+          // Try to use the API route first
+          try {
+            const response = await fetch('/api/theme', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ primaryColor: color }),
+            })
+
+            if (response.ok) {
+              currentColor = color
+              showMessage(`Theme color updated successfully`)
+              // Also save to localStorage as fallback
+              localStorage.setItem('theme-color', color)
+              applyThemeColorToDom(color)
+              return
+            }
+          } catch (apiError) {
+            console.log('API route not available, using localStorage instead')
+          }
+
+          // Fallback to localStorage for static export
+          localStorage.setItem('theme-color', color)
+          currentColor = color
+          applyThemeColorToDom(color)
+          showMessage(`Theme color updated successfully (using localStorage)`)
+        } catch (error) {
+          console.error('Error setting theme color:', error)
+          showMessage('Error updating theme color', false)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      // Function to apply theme color directly to DOM
+      function applyThemeColorToDom(color) {
+        // Create or update the style element
+        let styleEl = document.getElementById('theme-style')
+        if (!styleEl) {
+          styleEl = document.createElement('style')
+          styleEl.id = 'theme-style'
+          document.head.appendChild(styleEl)
+        }
+
+        // Generate CSS variables for the theme color
+        const cssVariables = generateThemeCssVariables(color)
+        styleEl.textContent = cssVariables
+      }
+
+      // Function to generate CSS variables for a theme color
+      function generateThemeCssVariables(color) {
+        // Helper function to adjust color brightness
+        function adjustColor(hex, factor) {
+          // Convert hex to RGB
+          let r = parseInt(hex.slice(1, 3), 16)
+          let g = parseInt(hex.slice(3, 5), 16)
+          let b = parseInt(hex.slice(5, 7), 16)
+
+          // Adjust brightness
+          r = Math.round(r + (255 - r) * factor)
+          g = Math.round(g + (255 - g) * factor)
+          b = Math.round(b + (255 - b) * factor)
+
+          // Convert back to hex
+          return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
+        }
+
+        return `
+          :root {
+            --color-primary-50: ${adjustColor(color, 0.95)} !important;
+            --color-primary-100: ${adjustColor(color, 0.9)} !important;
+            --color-primary-200: ${adjustColor(color, 0.8)} !important;
+            --color-primary-300: ${adjustColor(color, 0.7)} !important;
+            --color-primary-400: ${adjustColor(color, 0.6)} !important;
+            --color-primary-500: ${color} !important;
+            --color-primary-600: ${adjustColor(color, 0.4)} !important;
+            --color-primary-700: ${adjustColor(color, 0.3)} !important;
+            --color-primary-800: ${adjustColor(color, 0.2)} !important;
+            --color-primary-900: ${adjustColor(color, 0.1)} !important;
+            --color-primary-950: ${adjustColor(color, 0.05)} !important;
+          }
+        `
+      }
+
+      // Add click event listeners to the color options
+      colorOptions.forEach((option) => {
+        option.addEventListener('click', () => {
+          const color = option.dataset.color
+          updateColorPreview(color)
+        })
+      })
+
+      // Sync custom color picker and text input
+      customColorPicker.addEventListener('input', () => {
+        customColorText.value = customColorPicker.value.replace('#', '')
+        colorPreviewSmall.style.background = customColorPicker.value
+      })
+
+      customColorText.addEventListener('input', () => {
+        // Validate hex color format
+        const hexRegex = /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+        if (hexRegex.test(customColorText.value)) {
+          const colorValue = '#' + customColorText.value
+          customColorPicker.value = colorValue
+          colorPreviewSmall.style.background = colorValue
+        }
+      })
+
+      // Preview custom color
+      customColorButton.addEventListener('click', () => {
+        const hexRegex = /^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/
+        if (hexRegex.test(customColorText.value)) {
+          updateColorPreview('#' + customColorText.value)
+        } else {
+          showMessage('Please enter a valid hex color (e.g., 3b82f6)', false)
+        }
+      })
+
+      // Apply button click handler
+      applyButton.addEventListener('click', () => {
+        if (selectedColor !== currentColor) {
+          setThemeColor(selectedColor)
+        } else {
+          showMessage('This color is already applied')
+        }
+      })
+
+      // Load the current theme color on page load
+      async function loadCurrentTheme() {
+        setLoading(true)
+        try {
+          // Try to load from API first
+          try {
+            const response = await fetch('/api/theme')
+            if (response.ok) {
+              const data = await response.json()
+              currentColor = data.primaryColor
+              updateColorPreview(data.primaryColor)
+              return
+            }
+          } catch (apiError) {
+            console.log('API route not available, using localStorage instead')
+          }
+
+          // Fallback to localStorage
+          const savedColor = localStorage.getItem('theme-color')
+          if (savedColor) {
+            currentColor = savedColor
+            updateColorPreview(savedColor)
+            applyThemeColorToDom(savedColor)
+          } else {
+            // Default color if nothing is saved
+            currentColor = '#3b82f6'
+            updateColorPreview('#3b82f6')
+            applyThemeColorToDom('#3b82f6')
+          }
+        } catch (error) {
+          console.error('Error loading theme:', error)
+          showMessage('Error loading current theme', false)
+        } finally {
+          setLoading(false)
+        }
+      }
+
+      // Load the current theme on page load
+      loadCurrentTheme()
+    </script>
+  </body>
+</html>

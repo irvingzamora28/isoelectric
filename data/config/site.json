@@ -1,0 +1,61 @@
+{
+  "activeTemplate": "Main4",
+  "availableTemplates": [
+    {
+      "id": "Main",
+      "name": "Classic Business Template",
+      "description": "A professional layout with centered hero section, feature cards, and a clean blog display. Perfect for corporate sites and service businesses.",
+      "image": "/static/images/templates/template-main.jpg",
+      "elements": [
+        "Centered hero section with CTA buttons",
+        "Feature cards with icons",
+        "Product demo section with image",
+        "Recent blog posts in list format",
+        "Newsletter signup"
+      ],
+      "colors": "Primary color with white background"
+    },
+    {
+      "id": "Main2",
+      "name": "Modern Dashboard Template",
+      "description": "A contemporary layout with a full-width hero image, grid-based features, and card-style blog posts. Ideal for startups and tech companies.",
+      "image": "/static/images/templates/template-main2.jpg",
+      "elements": [
+        "Full-width hero with side image",
+        "Grid-based feature cards",
+        "Card-style blog posts",
+        "Prominent CTA section",
+        "Colorful icon set"
+      ],
+      "colors": "Gradient accents with light/dark sections"
+    },
+    {
+      "id": "Main3",
+      "name": "Modern Business Template",
+      "description": "A contemporary layout with a full-width hero image, grid-based features, and card-style blog posts. Ideal for startups and tech companies.",
+      "image": "/static/images/templates/template-main3.jpg",
+      "elements": [
+        "Full-width hero with side image",
+        "Grid-based feature cards",
+        "Card-style blog posts",
+        "Prominent CTA section",
+        "Colorful icon set"
+      ],
+      "colors": "Gradient accents with light/dark sections"
+    },
+    {
+      "id": "Main4",
+      "name": "Industrial Services Template",
+      "description": "A robust, professional layout designed for industrial service businesses like electrical contractors, plumbing, construction, and similar trades.",
+      "image": "/static/images/templates/template-main4.jpg",
+      "elements": [
+        "Bold hero section with gradient background",
+        "Services showcase with icons",
+        "Project portfolio with image cards",
+        "Testimonials section",
+        "Detailed contact form with quote request"
+      ],
+      "colors": "Professional blue/slate with high contrast sections"
+    }
+  ]
+}

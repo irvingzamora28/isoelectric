@@ -1,0 +1,309 @@
+{
+  "hero": {
+    "title": "Professional Electrical Solutions for Industry",
+    "image": "/static/images/services/industrial-electrical.jpg",
+    "description": "Reliable industrial electrical installations, maintenance, and repairs by certified professionals. Powering businesses across the nation with safety and efficiency.",
+    "primaryCta": {
+      "text": "Get a Free Quote",
+      "link": "#contact"
+    },
+    "secondaryCta": {
+      "text": "Our Services",
+      "link": "#services"
+    }
+  },
+  "services": {
+    "title": "Our Electrical Services",
+    "description": "We provide comprehensive electrical solutions for industrial and commercial facilities",
+    "items": [
+      {
+        "title": "Industrial Installations",
+        "description": "Complete electrical system design and installation for manufacturing facilities, warehouses, and industrial complexes.",
+        "icon": "FaIndustry",
+        "image": "/static/images/services/service1.jpg"
+      },
+      {
+        "title": "Electrical Maintenance",
+        "description": "Preventative maintenance programs to ensure your electrical systems operate at peak efficiency and prevent costly downtime.",
+        "icon": "FaTools",
+        "image": "/static/images/services/service2.jpg"
+      },
+      {
+        "title": "Emergency Repairs",
+        "description": "24/7 emergency electrical repair services to minimize downtime and keep your business running smoothly.",
+        "icon": "FaBolt",
+        "image": "/static/images/services/service3.jpg"
+      },
+      {
+        "title": "System Upgrades",
+        "description": "Modernize your electrical infrastructure to improve efficiency, reduce costs, and meet current safety standards.",
+        "icon": "FaChartLine",
+        "image": "/static/images/services/service4.jpg"
+      }
+    ]
+  },
+  "projects": {
+    "title": "Our Recent Projects",
+    "description": "Take a look at some of our recent industrial electrical installations",
+    "items": [
+      {
+        "title": "Manufacturing Plant Rewiring",
+        "description": "Complete electrical system overhaul for a 50,000 sq ft manufacturing facility.",
+        "image": "/static/images/services/project1.jpg",
+        "category": "Industrial",
+        "completionDate": "January 2025"
+      },
+      {
+        "title": "Warehouse Lighting Upgrade",
+        "description": "Energy-efficient LED lighting installation reducing power consumption by 60%.",
+        "image": "/static/images/services/project2.jpg",
+        "category": "Commercial",
+        "completionDate": "March 2025"
+      },
+      {
+        "title": "Solar Power Integration",
+        "description": "Installation of solar panels and integration with existing electrical systems.",
+        "image": "/static/images/services/project3.jpg",
+        "category": "Renewable Energy",
+        "completionDate": "April 2025"
+      }
+    ]
+  },
+  "mainFeatures": [
+    {
+      "id": 1,
+      "icon": "FaBolt",
+      "title": "Licensed Electrical Contractors",
+      "description": "Our team of certified electrical contractors brings decades of experience to every industrial project.",
+      "image": "landingDemoImage"
+    },
+    {
+      "id": 2,
+      "icon": "FaShieldAlt",
+      "title": "Safety First Approach",
+      "description": "We prioritize safety in every installation and maintenance project, exceeding industry standards.",
+      "image": "landingDemoImage"
+    },
+    {
+      "id": 3,
+      "icon": "FaClock",
+      "title": "24/7 Emergency Service",
+      "description": "Electrical emergencies don't wait for business hours. Our team is available around the clock.",
+      "image": "landingDemoImage"
+    }
+  ],
+  "features": {
+    "title": "Why Choose Our Electrical Services",
+    "description": "We deliver reliable, efficient, and safe electrical solutions for businesses of all sizes.",
+    "items": [
+      {
+        "title": "Certified Professionals",
+        "description": "All our electricians are certified and undergo regular training on the latest technologies.",
+        "icon": "FiAward"
+      },
+      {
+        "title": "Energy Efficiency",
+        "description": "We design systems that maximize energy efficiency, reducing your operational costs.",
+        "icon": "FiZap"
+      },
+      {
+        "title": "Custom Solutions",
+        "description": "Every business has unique electrical needs. We design custom solutions for your specific requirements.",
+        "icon": "FiSettings"
+      },
+      {
+        "title": "Transparent Pricing",
+        "description": "No hidden fees or surprises. We provide detailed quotes before starting any work.",
+        "icon": "FiDollarSign"
+      },
+      {
+        "title": "Scheduled Maintenance",
+        "description": "Prevent costly downtime with our scheduled maintenance programs tailored to your business.",
+        "icon": "FiCalendar"
+      },
+      {
+        "title": "24/7 Emergency Service",
+        "description": "Electrical emergencies can happen anytime. Our team is ready to respond 24/7.",
+        "icon": "FiPhone"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Power Your Business?",
+    "description": "Contact us today for a free consultation and quote on your industrial electrical project.",
+    "button": {
+      "text": "Contact Us Now",
+      "link": "#contact"
+    },
+    "collectEmail": true
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "description": "Common questions about our electrical services",
+    "questions": [
+      {
+        "question": "Are your electricians licensed and insured?",
+        "answer": "Yes, all our electricians are fully licensed, insured, and certified to work on industrial electrical systems."
+      },
+      {
+        "question": "How quickly can you respond to an emergency?",
+        "answer": "We offer 24/7 emergency services with typical response times of under 2 hours for critical situations."
+      },
+      {
+        "question": "Do you provide warranties on your work?",
+        "answer": "Yes, we offer a comprehensive warranty on all our installations and repairs, typically ranging from 1-5 years depending on the project."
+      },
+      {
+        "question": "Can you help with energy efficiency upgrades?",
+        "answer": "Absolutely! We specialize in energy-efficient electrical systems that can significantly reduce your operational costs."
+      },
+      {
+        "question": "Do you handle permits for electrical work?",
+        "answer": "Yes, we handle all necessary permits and ensure all work meets or exceeds local electrical codes and regulations."
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Our Work",
+    "description": "Take a look at some of our recent projects and templates",
+    "images": [
+      {
+        "src": "/static/images/templates/template-main.jpg",
+        "alt": "Template Main",
+        "caption": "Modern Business Template"
+      },
+      {
+        "src": "/static/images/templates/template-main2.jpg",
+        "alt": "Template Main 2",
+        "caption": "E-Commerce Solution"
+      },
+      {
+        "src": "/static/images/templates/template-main3.jpg",
+        "alt": "Template Main 3",
+        "caption": "Portfolio Design"
+      },
+      {
+        "src": "/static/images/landing-demo.jpeg",
+        "alt": "Landing Demo",
+        "caption": "Landing Page Example"
+      },
+      {
+        "src": "/static/images/dashboard-demo.jpg",
+        "alt": "Dashboard Demo",
+        "caption": "Admin Dashboard"
+      },
+      {
+        "src": "/static/images/twitter-card.jpg",
+        "alt": "Social Media Card",
+        "caption": "Social Media Integration"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Service Plans",
+    "description": "Choose the maintenance plan that fits your business needs",
+    "plans": [
+      {
+        "name": "Basic Maintenance",
+        "price": "From $199/month",
+        "description": "Essential maintenance for small businesses.",
+        "features": [
+          "Quarterly Inspections",
+          "Emergency Response",
+          "Basic Repairs",
+          "Safety Compliance Checks"
+        ],
+        "cta": {
+          "text": "Get Started",
+          "link": "#contact"
+        }
+      },
+      {
+        "name": "Standard Maintenance",
+        "price": "From $399/month",
+        "description": "Comprehensive coverage for medium-sized facilities.",
+        "features": [
+          "Monthly Inspections",
+          "Priority Emergency Response",
+          "Parts & Labor Included",
+          "Thermal Imaging Scans",
+          "Load Analysis"
+        ],
+        "cta": {
+          "text": "Get Started",
+          "link": "#contact"
+        },
+        "highlighted": true
+      },
+      {
+        "name": "Premium Maintenance",
+        "price": "Custom Pricing",
+        "description": "Complete electrical management for large industrial facilities.",
+        "features": [
+          "All Standard features",
+          "Weekly Inspections",
+          "Dedicated Technician",
+          "24/7 Monitoring Systems",
+          "Annual System Upgrades"
+        ],
+        "cta": {
+          "text": "Contact Sales",
+          "link": "#contact"
+        }
+      }
+    ]
+  },
+  "contact": {
+    "title": "Request a Free Quote",
+    "description": "Tell us about your electrical project and we'll provide a detailed quote within 24 hours.",
+    "fields": [
+      { "name": "name", "label": "Name", "type": "text", "required": true },
+      { "name": "email", "label": "Email", "type": "email", "required": true },
+      { "name": "phone", "label": "Phone", "type": "tel", "required": true },
+      { "name": "company", "label": "Company", "type": "text", "required": false },
+      { "name": "projectType", "label": "Project Type", "type": "text", "required": false },
+      { "name": "message", "label": "Project Details", "type": "textarea", "required": true }
+    ],
+    "submitLabel": "Request Quote",
+    "successMessage": "Thank you for your inquiry! We'll contact you within 24 hours with a detailed quote.",
+    "contactInfo": {
+      "title": "Contact Information",
+      "phone": {
+        "label": "Phone",
+        "number": "(555) 123-4567",
+        "hours": "Mon-Fri: 8am - 6pm"
+      },
+      "email": {
+        "label": "Email",
+        "address": "info@electricalservices.com",
+        "responseTime": "We respond within 24 hours"
+      },
+      "location": {
+        "label": "Location",
+        "address": ["1234 Industrial Blvd", "Anytown, USA 12345"]
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "description": "Here's what some of our clients have to say about our electrical services",
+    "image": "/static/images/services/testimonials-bg.jpg",
+    "testimonials": [
+      {
+        "name": "John Donovan",
+        "title": "Operations Manager, Midwest Manufacturing",
+        "quote": "Their team completed our factory rewiring project ahead of schedule and under budget. The new system has improved our efficiency by 35%."
+      },
+      {
+        "name": "Sarah Chen",
+        "title": "Facility Director, TechCore Industries",
+        "quote": "We've been using their maintenance services for over 3 years. Their preventative approach has eliminated unexpected downtime completely."
+      },
+      {
+        "name": "Michael Rodriguez",
+        "title": "CEO, Rodriguez Construction",
+        "quote": "Their electrical team integrated seamlessly with our construction crews. The quality of work and attention to detail was outstanding."
+      }
+    ]
+  }
+}
