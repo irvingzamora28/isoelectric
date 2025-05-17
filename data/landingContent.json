@@ -4,11 +4,11 @@
     "description": "Soluciones eléctricas integrales y seguras para maquiladoras y plantas de producción. Maximizamos la eficiencia y garantizamos la continuidad operativa de tu negocio.",
     "primaryCta": {
       "text": "Solicita una Cotización",
-      "link": "#"
+      "link": "#cta"
     },
     "secondaryCta": {
       "text": "Conoce Nuestros Servicios",
-      "link": "#"
+      "link": "#services"
     }
   },
   "services": {
