@@ -1,71 +1,68 @@
 {
   "hero": {
-    "title": "Professional Electrical Solutions for Industry",
-    "image": "/static/images/services/industrial-electrical.jpg",
-    "description": "Reliable industrial electrical installations, maintenance, and repairs by certified professionals. Powering businesses across the nation with safety and efficiency.",
+    "title": "ISOELECTRIC: Potencia Industrial Confiable en Ciudad Juárez",
+    "description": "Soluciones eléctricas integrales y seguras para maquiladoras y plantas de producción. Maximizamos la eficiencia y garantizamos la continuidad operativa de tu negocio.",
     "primaryCta": {
-      "text": "Get a Free Quote",
-      "link": "#contact"
+      "text": "Solicita una Cotización",
+      "link": "#"
     },
     "secondaryCta": {
-      "text": "Our Services",
-      "link": "#services"
+      "text": "Conoce Nuestros Servicios",
+      "link": "#"
     }
   },
   "services": {
-    "title": "Our Electrical Services",
-    "description": "We provide comprehensive electrical solutions for industrial and commercial facilities",
+    "title": "Nuestros Servicios Eléctricos Industriales",
+    "description": "Ofrecemos una amplia gama de servicios especializados para cubrir todas tus necesidades eléctricas.",
     "items": [
       {
-        "title": "Industrial Installations",
-        "description": "Complete electrical system design and installation for manufacturing facilities, warehouses, and industrial complexes.",
-        "icon": "FaIndustry",
-        "image": "/static/images/services/service1.jpg"
+        "title": "Instalaciones Eléctricas de Alta y Baja Tensión",
+        "description": "Diseño, instalación y puesta en marcha de sistemas eléctricos seguros y eficientes, cumpliendo con las normativas más exigentes.",
+        "icon": "FaIndustry"
       },
       {
-        "title": "Electrical Maintenance",
-        "description": "Preventative maintenance programs to ensure your electrical systems operate at peak efficiency and prevent costly downtime.",
+        "title": "Mantenimiento Eléctrico",
+        "description": "Programas de mantenimiento preventivo para garantizar que sus sistemas eléctricos funcionen con la máxima eficiencia y evitar costosos tiempos de inactividad.",
         "icon": "FaTools",
         "image": "/static/images/services/service2.jpg"
       },
       {
-        "title": "Emergency Repairs",
-        "description": "24/7 emergency electrical repair services to minimize downtime and keep your business running smoothly.",
+        "title": "Reparaciones de Emergencia",
+        "description": "Servicios de reparación eléctrica de emergencia 24/7 para minimizar el tiempo de inactividad y mantener su negocio funcionando sin problemas.",
         "icon": "FaBolt",
         "image": "/static/images/services/service3.jpg"
       },
       {
-        "title": "System Upgrades",
-        "description": "Modernize your electrical infrastructure to improve efficiency, reduce costs, and meet current safety standards.",
+        "title": "Actualizaciones de Sistemas",
+        "description": "Modernice su infraestructura eléctrica para mejorar la eficiencia, reducir costos y cumplir con las normas de seguridad vigentes.",
         "icon": "FaChartLine",
         "image": "/static/images/services/service4.jpg"
       }
     ]
   },
   "projects": {
-    "title": "Our Recent Projects",
-    "description": "Take a look at some of our recent industrial electrical installations",
+    "title": "Proyectos Destacados",
+    "description": "Conoce algunos de los proyectos que hemos realizado con éxito para nuestros clientes.",
     "items": [
       {
-        "title": "Manufacturing Plant Rewiring",
-        "description": "Complete electrical system overhaul for a 50,000 sq ft manufacturing facility.",
-        "image": "/static/images/services/project1.jpg",
-        "category": "Industrial",
-        "completionDate": "January 2025"
+        "title": "Instalación Eléctrica Completa en Planta Manufacturera",
+        "description": "Diseño e instalación de sistema eléctrico integral para nueva planta manufacturera, cumpliendo con altos estándares de seguridad y eficiencia.",
+        "category": "Instalaciones Eléctricas",
+        "completionDate": "Marzo 2023"
       },
       {
-        "title": "Warehouse Lighting Upgrade",
-        "description": "Energy-efficient LED lighting installation reducing power consumption by 60%.",
+        "title": "Renovación de la iluminación del almacén",
+        "description": "Instalación de iluminación LED de bajo consumo que reduce el consumo de energía en un 60%",
         "image": "/static/images/services/project2.jpg",
-        "category": "Commercial",
-        "completionDate": "March 2025"
+        "category": "Comercial",
+        "completionDate": "Marzo de 2025"
       },
       {
-        "title": "Solar Power Integration",
-        "description": "Installation of solar panels and integration with existing electrical systems.",
+        "title": "Integración de energía solar",
+        "description": "Instalación de paneles solares e integración con los sistemas eléctricos existentes",
         "image": "/static/images/services/project3.jpg",
-        "category": "Renewable Energy",
-        "completionDate": "April 2025"
+        "category": "Energía renovable",
+        "completionDate": "Abril de 2025"
       }
     ]
   },
@@ -73,236 +70,151 @@
     {
       "id": 1,
       "icon": "FaBolt",
-      "title": "Licensed Electrical Contractors",
-      "description": "Our team of certified electrical contractors brings decades of experience to every industrial project.",
-      "image": "landingDemoImage"
+      "title": "Eficiencia Energética",
+      "description": "Optimizamos tus sistemas eléctricos para reducir el consumo de energía y disminuir tus costos operativos."
     },
     {
       "id": 2,
       "icon": "FaShieldAlt",
-      "title": "Safety First Approach",
-      "description": "We prioritize safety in every installation and maintenance project, exceeding industry standards.",
-      "image": "landingDemoImage"
+      "title": "Seguridad Garantizada",
+      "description": "Priorizamos la seguridad en cada proyecto, cumpliendo con las normas y regulaciones más estrictas."
     },
     {
       "id": 3,
       "icon": "FaClock",
-      "title": "24/7 Emergency Service",
-      "description": "Electrical emergencies don't wait for business hours. Our team is available around the clock.",
-      "image": "landingDemoImage"
+      "title": "Disponibilidad 24/7",
+      "description": "Ofrecemos soporte técnico y servicios de emergencia las 24 horas del día, los 7 días de la semana."
     }
   ],
   "features": {
-    "title": "Why Choose Our Electrical Services",
-    "description": "We deliver reliable, efficient, and safe electrical solutions for businesses of all sizes.",
+    "title": "¿Por qué elegir ISOELECTRIC?",
+    "description": "Descubre las ventajas de trabajar con un equipo de expertos en instalaciones eléctricas industriales.",
     "items": [
       {
-        "title": "Certified Professionals",
-        "description": "All our electricians are certified and undergo regular training on the latest technologies.",
-        "icon": "FiAward"
+        "title": "Equipo Altamente Capacitado",
+        "description": "Contamos con ingenieros y técnicos especializados en instalaciones eléctricas industriales.",
+        "icon": "FiUsers"
       },
       {
-        "title": "Energy Efficiency",
-        "description": "We design systems that maximize energy efficiency, reducing your operational costs.",
-        "icon": "FiZap"
-      },
-      {
-        "title": "Custom Solutions",
-        "description": "Every business has unique electrical needs. We design custom solutions for your specific requirements.",
-        "icon": "FiSettings"
-      },
-      {
-        "title": "Transparent Pricing",
-        "description": "No hidden fees or surprises. We provide detailed quotes before starting any work.",
-        "icon": "FiDollarSign"
-      },
-      {
-        "title": "Scheduled Maintenance",
-        "description": "Prevent costly downtime with our scheduled maintenance programs tailored to your business.",
-        "icon": "FiCalendar"
-      },
-      {
-        "title": "24/7 Emergency Service",
-        "description": "Electrical emergencies can happen anytime. Our team is ready to respond 24/7.",
-        "icon": "FiPhone"
+        "title": "Tecnología de Vanguardia",
+        "description": "Utilizamos equipos y herramientas de última generación para garantizar la calidad de nuestros servicios.",
+        "icon": "FiSmartphone"
       }
     ]
   },
   "cta": {
-    "title": "Ready to Power Your Business?",
-    "description": "Contact us today for a free consultation and quote on your industrial electrical project.",
+    "title": "¿Listo para Optimizar tu Sistema Eléctrico?",
+    "description": "Contáctanos hoy mismo para una evaluación gratuita y una cotización personalizada.",
     "button": {
-      "text": "Contact Us Now",
-      "link": "#contact"
+      "text": "Solicita tu Cotización",
+      "link": "#"
     },
     "collectEmail": true
   },
   "faqs": {
-    "title": "Frequently Asked Questions",
-    "description": "Common questions about our electrical services",
+    "title": "Preguntas Frecuentes",
+    "description": "Respuestas a las preguntas más comunes sobre nuestros servicios.",
     "questions": [
       {
-        "question": "Are your electricians licensed and insured?",
-        "answer": "Yes, all our electricians are fully licensed, insured, and certified to work on industrial electrical systems."
+        "question": "¿Qué tipo de industrias atienden?",
+        "answer": "Atendemos una amplia variedad de industrias, incluyendo maquiladoras, plantas de producción, centros de distribución y más."
       },
       {
-        "question": "How quickly can you respond to an emergency?",
-        "answer": "We offer 24/7 emergency services with typical response times of under 2 hours for critical situations."
+        "question": "¿Ofrecen servicios de mantenimiento preventivo?",
+        "answer": "Sí, ofrecemos programas de mantenimiento preventivo personalizados para asegurar el funcionamiento óptimo de tus equipos."
       },
       {
-        "question": "Do you provide warranties on your work?",
-        "answer": "Yes, we offer a comprehensive warranty on all our installations and repairs, typically ranging from 1-5 years depending on the project."
+        "question": "¿Trabajan con proyectos de automatización?",
+        "answer": "Sí, contamos con experiencia en la implementación de sistemas de automatización industrial."
       },
       {
-        "question": "Can you help with energy efficiency upgrades?",
-        "answer": "Absolutely! We specialize in energy-efficient electrical systems that can significantly reduce your operational costs."
+        "question": "¿Cumplen con las normativas de seguridad?",
+        "answer": "Sí, cumplimos con todas las normativas nacionales e internacionales de seguridad eléctrica."
       },
       {
-        "question": "Do you handle permits for electrical work?",
-        "answer": "Yes, we handle all necessary permits and ensure all work meets or exceeds local electrical codes and regulations."
+        "question": "¿Qué garantías ofrecen en sus proyectos?",
+        "answer": "Ofrecemos garantías en todos nuestros proyectos para asegurar la calidad y el rendimiento de nuestras instalaciones."
       }
     ]
   },
   "gallery": {
-    "title": "Our Work",
-    "description": "Take a look at some of our recent projects and templates",
+    "title": "Galería de Proyectos",
+    "description": "Imágenes de nuestros proyectos más recientes.",
     "images": [
       {
-        "src": "/static/images/templates/template-main.jpg",
-        "alt": "Template Main",
-        "caption": "Modern Business Template"
-      },
-      {
-        "src": "/static/images/templates/template-main2.jpg",
-        "alt": "Template Main 2",
-        "caption": "E-Commerce Solution"
-      },
-      {
-        "src": "/static/images/templates/template-main3.jpg",
-        "alt": "Template Main 3",
-        "caption": "Portfolio Design"
-      },
-      {
-        "src": "/static/images/landing-demo.jpeg",
-        "alt": "Landing Demo",
-        "caption": "Landing Page Example"
-      },
-      {
-        "src": "/static/images/dashboard-demo.jpg",
-        "alt": "Dashboard Demo",
-        "caption": "Admin Dashboard"
-      },
-      {
-        "src": "/static/images/twitter-card.jpg",
-        "alt": "Social Media Card",
-        "caption": "Social Media Integration"
-      }
-    ]
-  },
-  "pricing": {
-    "title": "Service Plans",
-    "description": "Choose the maintenance plan that fits your business needs",
-    "plans": [
-      {
-        "name": "Basic Maintenance",
-        "price": "From $199/month",
-        "description": "Essential maintenance for small businesses.",
-        "features": [
-          "Quarterly Inspections",
-          "Emergency Response",
-          "Basic Repairs",
-          "Safety Compliance Checks"
-        ],
-        "cta": {
-          "text": "Get Started",
-          "link": "#contact"
-        }
-      },
-      {
-        "name": "Standard Maintenance",
-        "price": "From $399/month",
-        "description": "Comprehensive coverage for medium-sized facilities.",
-        "features": [
-          "Monthly Inspections",
-          "Priority Emergency Response",
-          "Parts & Labor Included",
-          "Thermal Imaging Scans",
-          "Load Analysis"
-        ],
-        "cta": {
-          "text": "Get Started",
-          "link": "#contact"
-        },
-        "highlighted": true
-      },
-      {
-        "name": "Premium Maintenance",
-        "price": "Custom Pricing",
-        "description": "Complete electrical management for large industrial facilities.",
-        "features": [
-          "All Standard features",
-          "Weekly Inspections",
-          "Dedicated Technician",
-          "24/7 Monitoring Systems",
-          "Annual System Upgrades"
-        ],
-        "cta": {
-          "text": "Contact Sales",
-          "link": "#contact"
-        }
+        "src": "/placeholder.jpg",
+        "alt": "Instalación eléctrica industrial",
+        "caption": "Instalación de cableado de alta tensión"
       }
     ]
   },
   "contact": {
-    "title": "Request a Free Quote",
-    "description": "Tell us about your electrical project and we'll provide a detailed quote within 24 hours.",
+    "title": "Contáctanos",
+    "description": "Estamos listos para ayudarte con tus necesidades eléctricas industriales.",
     "fields": [
-      { "name": "name", "label": "Name", "type": "text", "required": true },
-      { "name": "email", "label": "Email", "type": "email", "required": true },
-      { "name": "phone", "label": "Phone", "type": "tel", "required": true },
-      { "name": "company", "label": "Company", "type": "text", "required": false },
-      { "name": "projectType", "label": "Project Type", "type": "text", "required": false },
-      { "name": "message", "label": "Project Details", "type": "textarea", "required": true }
+      {
+        "name": "name",
+        "label": "Nombre",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "Correo Electrónico",
+        "type": "email",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label": "Teléfono",
+        "type": "text",
+        "required": false
+      },
+      {
+        "name": "message",
+        "label": "Mensaje",
+        "type": "textarea",
+        "required": true
+      }
     ],
-    "submitLabel": "Request Quote",
-    "successMessage": "Thank you for your inquiry! We'll contact you within 24 hours with a detailed quote.",
+    "submitLabel": "Enviar Mensaje",
+    "successMessage": "¡Gracias! Nos pondremos en contacto contigo a la brevedad.",
     "contactInfo": {
-      "title": "Contact Information",
+      "title": "Información de Contacto",
       "phone": {
-        "label": "Phone",
-        "number": "(555) 123-4567",
-        "hours": "Mon-Fri: 8am - 6pm"
+        "label": "Teléfono",
+        "number": "+52 (656) 123-4567",
+        "hours": "Lunes a Viernes, 9:00 AM - 6:00 PM"
       },
       "email": {
-        "label": "Email",
-        "address": "info@electricalservices.com",
-        "responseTime": "We respond within 24 hours"
+        "label": "Correo Electrónico",
+        "address": "info@isoelectric.com",
+        "responseTime": "Respuesta en 24 horas"
       },
       "location": {
-        "label": "Location",
-        "address": ["1234 Industrial Blvd", "Anytown, USA 12345"]
+        "label": "Ubicación",
+        "address": ["Av. Tecnológico #1234", "Ciudad Juárez, Chihuahua"]
       }
     }
   },
   "testimonials": {
-    "title": "What Our Clients Say",
-    "description": "Here's what some of our clients have to say about our electrical services",
-    "image": "/static/images/services/testimonials-bg.jpg",
+    "title": "Testimonios de Clientes",
+    "description": "Lo que dicen nuestros clientes sobre nuestros servicios.",
     "testimonials": [
       {
-        "name": "John Donovan",
-        "title": "Operations Manager, Midwest Manufacturing",
-        "quote": "Their team completed our factory rewiring project ahead of schedule and under budget. The new system has improved our efficiency by 35%."
+        "name": "Juan Pérez",
+        "title": "Gerente de Planta, ABC Manufacturing",
+        "quote": "ISOELECTRIC nos ha brindado soluciones eléctricas confiables y eficientes. Su equipo es altamente profesional y siempre están disponibles para ayudarnos."
       },
       {
         "name": "Sarah Chen",
-        "title": "Facility Director, TechCore Industries",
-        "quote": "We've been using their maintenance services for over 3 years. Their preventative approach has eliminated unexpected downtime completely."
+        "title": "Directora de Instalaciones, TechCore Industries",
+        "quote": "Llevamos más de 3 años utilizando sus servicios de mantenimiento. Su enfoque preventivo ha eliminado por completo las paradas imprevistas."
       },
       {
         "name": "Michael Rodriguez",
-        "title": "CEO, Rodriguez Construction",
-        "quote": "Their electrical team integrated seamlessly with our construction crews. The quality of work and attention to detail was outstanding."
+        "title": "Director Ejecutivo, Rodriguez Construction",
+        "quote": "Su equipo eléctrico se integró a la perfección con nuestros equipos de construcción. La calidad del trabajo y la atención al detalle fueron excepcionales."
       }
     ]
   }
