@@ -66,6 +66,57 @@
       }
     ]
   },
+  "pricing": {
+    "title": "Planes y Precios",
+    "description": "Adaptamos nuestros servicios a tus necesidades y presupuesto.",
+    "plans": [
+      {
+        "name": "Evaluación Inicial",
+        "price": "Gratis",
+        "description": "Evaluación de tus necesidades eléctricas y propuesta de soluciones.",
+        "features": [
+          "Análisis de la situación actual",
+          "Identificación de áreas de mejora",
+          "Propuesta de soluciones personalizadas"
+        ],
+        "cta": {
+          "text": "Solicitar Evaluación",
+          "link": "#"
+        }
+      },
+      {
+        "name": "Mantenimiento Preventivo",
+        "price": "Cotización Personalizada",
+        "description": "Programa de mantenimiento para asegurar la continuidad operativa de tu planta.",
+        "features": [
+          "Inspecciones periódicas",
+          "Pruebas de funcionamiento",
+          "Informes detallados",
+          "Prioridad en atención de emergencias"
+        ],
+        "cta": {
+          "text": "Solicitar Cotización",
+          "link": "#"
+        },
+        "highlighted": true
+      },
+      {
+        "name": "Proyectos a Medida",
+        "price": "Cotización Personalizada",
+        "description": "Desarrollo e implementación de proyectos eléctricos integrales.",
+        "features": [
+          "Diseño personalizado",
+          "Instalación profesional",
+          "Puesta en marcha",
+          "Soporte técnico continuo"
+        ],
+        "cta": {
+          "text": "Contactar a un Asesor",
+          "link": "#"
+        }
+      }
+    ]
+  },
   "mainFeatures": [
     {
       "id": 1,
