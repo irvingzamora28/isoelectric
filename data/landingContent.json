@@ -1,6 +1,7 @@
 {
   "hero": {
     "title": "ISOELECTRIC: Potencia Industrial Confiable en Ciudad Juárez",
+    "image": "/static/images/services/hero.jpg",
     "description": "Soluciones eléctricas integrales y seguras para maquiladoras y plantas de producción. Maximizamos la eficiencia y garantizamos la continuidad operativa de tu negocio.",
     "primaryCta": {
       "text": "Solicita una Cotización",
@@ -75,9 +76,15 @@
         "price": "Gratis",
         "description": "Evaluación de tus necesidades eléctricas y propuesta de soluciones.",
         "features": [
-          "Análisis de la situación actual",
-          "Identificación de áreas de mejora",
-          "Propuesta de soluciones personalizadas"
+          {
+            "text": "Análisis de la situación actual"
+          },
+          {
+            "text": "Identificación de áreas de mejora"
+          },
+          {
+            "text": "Propuesta de soluciones personalizadas"
+          }
         ],
         "cta": {
           "text": "Solicitar Evaluación",
@@ -89,10 +96,18 @@
         "price": "Cotización Personalizada",
         "description": "Programa de mantenimiento para asegurar la continuidad operativa de tu planta.",
         "features": [
-          "Inspecciones periódicas",
-          "Pruebas de funcionamiento",
-          "Informes detallados",
-          "Prioridad en atención de emergencias"
+          {
+            "text": "Inspecciones periódicas"
+          },
+          {
+            "text": "Pruebas de funcionamiento"
+          },
+          {
+            "text": "Informes detallados"
+          },
+          {
+            "text": "Prioridad en atención de emergencias"
+          }
         ],
         "cta": {
           "text": "Solicitar Cotización",
@@ -105,10 +120,18 @@
         "price": "Cotización Personalizada",
         "description": "Desarrollo e implementación de proyectos eléctricos integrales.",
         "features": [
-          "Diseño personalizado",
-          "Instalación profesional",
-          "Puesta en marcha",
-          "Soporte técnico continuo"
+          {
+            "text": "Diseño personalizado"
+          },
+          {
+            "text": "Instalación profesional"
+          },
+          {
+            "text": "Puesta en marcha"
+          },
+          {
+            "text": "Soporte técnico continuo"
+          }
         ],
         "cta": {
           "text": "Contactar a un Asesor",
@@ -117,26 +140,30 @@
       }
     ]
   },
-  "mainFeatures": [
-    {
-      "id": 1,
-      "icon": "FaBolt",
-      "title": "Eficiencia Energética",
-      "description": "Optimizamos tus sistemas eléctricos para reducir el consumo de energía y disminuir tus costos operativos."
-    },
-    {
-      "id": 2,
-      "icon": "FaShieldAlt",
-      "title": "Seguridad Garantizada",
-      "description": "Priorizamos la seguridad en cada proyecto, cumpliendo con las normas y regulaciones más estrictas."
-    },
-    {
-      "id": 3,
-      "icon": "FaClock",
-      "title": "Disponibilidad 24/7",
-      "description": "Ofrecemos soporte técnico y servicios de emergencia las 24 horas del día, los 7 días de la semana."
-    }
-  ],
+  "mainFeatures": {
+    "title": "Nuestros Servicios Eléctricos Industriales",
+    "description": "Ofrecemos una amplia gama de servicios especializados para cubrir todas tus necesidades eléctricas.",
+    "items": [
+      {
+        "id": 1,
+        "icon": "FaBolt",
+        "title": "Eficiencia Energética",
+        "description": "Optimizamos tus sistemas eléctricos para reducir el consumo de energía y disminuir tus costos operativos."
+      },
+      {
+        "id": 2,
+        "icon": "FaShieldAlt",
+        "title": "Seguridad Garantizada",
+        "description": "Priorizamos la seguridad en cada proyecto, cumpliendo con las normas y regulaciones más estrictas."
+      },
+      {
+        "id": 3,
+        "icon": "FaClock",
+        "title": "Disponibilidad 24/7",
+        "description": "Ofrecemos soporte técnico y servicios de emergencia las 24 horas del día, los 7 días de la semana."
+      }
+    ]
+  },
   "features": {
     "title": "¿Por qué elegir ISOELECTRIC?",
     "description": "Descubre las ventajas de trabajar con un equipo de expertos en instalaciones eléctricas industriales.",
@@ -251,21 +278,25 @@
   "testimonials": {
     "title": "Testimonios de Clientes",
     "description": "Lo que dicen nuestros clientes sobre nuestros servicios.",
+    "image": "/static/images/services/testimonials-bg.jpg",
     "testimonials": [
       {
         "name": "Juan Pérez",
         "title": "Gerente de Planta, ABC Manufacturing",
-        "quote": "ISOELECTRIC nos ha brindado soluciones eléctricas confiables y eficientes. Su equipo es altamente profesional y siempre están disponibles para ayudarnos."
+        "quote": "ISOELECTRIC nos ha brindado soluciones eléctricas confiables y eficientes. Su equipo es altamente profesional y siempre están disponibles para ayudarnos.",
+        "image": "/static/images/services/testimonial1.jpg"
       },
       {
         "name": "Sarah Chen",
         "title": "Directora de Instalaciones, TechCore Industries",
-        "quote": "Llevamos más de 3 años utilizando sus servicios de mantenimiento. Su enfoque preventivo ha eliminado por completo las paradas imprevistas."
+        "quote": "Llevamos más de 3 años utilizando sus servicios de mantenimiento. Su enfoque preventivo ha eliminado por completo las paradas imprevistas.",
+        "image": "/static/images/services/testimonial2.jpg"
       },
       {
         "name": "Michael Rodriguez",
         "title": "Director Ejecutivo, Rodriguez Construction",
-        "quote": "Su equipo eléctrico se integró a la perfección con nuestros equipos de construcción. La calidad del trabajo y la atención al detalle fueron excepcionales."
+        "quote": "Su equipo eléctrico se integró a la perfección con nuestros equipos de construcción. La calidad del trabajo y la atención al detalle fueron excepcionales.",
+        "image": "/static/images/services/testimonial3.jpg"
       }
     ]
   }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import dataLandingContent from '@/data/landingContent.json'
@@ -9,6 +9,14 @@ import { useEmailSubscription } from '@/lib/useEmailSubscription'
 import { useContactSubmission } from '@/lib/useContactSubmission'
 import { FaIndustry, FaTools, FaBolt, FaChartLine, FaShieldAlt, FaClock } from 'react-icons/fa'
 import { FiAward, FiZap, FiSettings, FiDollarSign, FiCalendar, FiPhone } from 'react-icons/fi'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  AnimatePresence,
+  Variants,
+} from 'framer-motion'
 
 const landingContent = dataLandingContent as LandingContent
 
@@ -33,64 +41,212 @@ const featureIconMap = {
   FaBolt,
 }
 
+// Animation variants for reuse
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
+
+const fadeIn: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.6 } },
+}
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+}
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+}
+
+const slideInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
+
+const slideInRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
+
+// Component to handle testimonial profile images with fallback
+const TestimonialProfileImage = ({
+  image,
+  defaultImage,
+  name,
+}: {
+  image?: string
+  defaultImage: string
+  name: string
+}) => {
+  const [imageSrc, setImageSrc] = useState<string>(image || defaultImage)
+  const [imageLoadFailed, setImageLoadFailed] = useState<boolean>(false)
+
+  // Reset image source if the image prop changes
+  useEffect(() => {
+    setImageSrc(image || defaultImage)
+    setImageLoadFailed(false)
+  }, [image, defaultImage])
+
+  return imageLoadFailed ? (
+    <Image src={defaultImage} alt={name} fill className="object-cover" />
+  ) : (
+    <Image
+      src={imageSrc}
+      alt={name}
+      fill
+      className="object-cover"
+      onError={() => {
+        if (imageSrc !== defaultImage) {
+          setImageSrc(defaultImage)
+          setImageLoadFailed(true)
+        }
+      }}
+    />
+  )
+}
+
 const HeroSection = () => {
   const { hero } = landingContent
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.3 })
+
+  // Default hero image path - we know this exists in the project
+  const defaultHeroImage = '/static/images/hero.jpg'
+
+  // Use state to track if the primary image failed to load
+  const [imageSrc, setImageSrc] = useState<string>(hero.image || defaultHeroImage)
+  const [imageLoadFailed, setImageLoadFailed] = useState<boolean>(false)
+
+  // Effect to reset image source if hero.image changes
+  useEffect(() => {
+    setImageSrc(hero.image || defaultHeroImage)
+    setImageLoadFailed(false)
+  }, [hero.image])
 
   return (
     <section className="relative flex h-screen items-center justify-center overflow-hidden">
       {/* Full-screen background image with overlay */}
-      <div className="absolute inset-0 z-0">
+      <motion.div
+        className="absolute inset-0 z-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <div className="relative h-full w-full">
-          <Image
-            src={hero.image || '/static/images/services/hero.jpg'}
-            alt="Industrial Electrical Services"
-            fill
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60"></div>
+          {!imageLoadFailed ? (
+            <Image
+              src={imageSrc}
+              alt={hero.title || 'Hero Image'}
+              fill
+              priority
+              className="object-cover"
+              onError={() => {
+                // Only switch to default if we're not already using it
+                if (imageSrc !== defaultHeroImage) {
+                  console.log('Primary image failed to load, switching to default')
+                  setImageSrc(defaultHeroImage)
+                  setImageLoadFailed(true)
+                }
+              }}
+            />
+          ) : (
+            <Image
+              src={defaultHeroImage}
+              alt={hero.title || 'Hero Image'}
+              fill
+              priority
+              className="object-cover"
+            />
+          )}
+          <motion.div
+            className="absolute inset-0 bg-black/60"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          ></motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto mt-[-5vh] px-4 text-white">
+      <motion.div
+        ref={ref}
+        className="relative z-10 container mx-auto mt-[-5vh] px-4 text-white"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
         <div className="mx-auto max-w-4xl">
-          <h1 className="mb-6 text-5xl leading-tight font-bold md:text-7xl">
-            <span className="text-primary-400">{hero.title.split(' ')[0]}</span>{' '}
+          <motion.h1
+            className="mb-6 text-5xl leading-tight font-bold md:text-7xl"
+            variants={fadeInUp}
+          >
+            <motion.span
+              className="text-primary-400"
+              variants={fadeInUp}
+              transition={{ delay: 0.2 }}
+            >
+              {hero.title.split(' ')[0]}
+            </motion.span>{' '}
             {hero.title.split(' ').slice(1).join(' ')}
-          </h1>
-          <p className="mb-10 max-w-2xl text-xl text-white md:text-2xl">{hero.description}</p>
-          <div className="flex flex-col gap-4 sm:flex-row">
-            <Link
-              href={hero.primaryCta.link}
-              className="bg-primary-500 hover:bg-primary-600 inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:shadow-xl"
-            >
-              {hero.primaryCta.text}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="ml-2 h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
+          </motion.h1>
+          <motion.p className="mb-10 max-w-2xl text-xl text-white md:text-2xl" variants={fadeInUp}>
+            {hero.description}
+          </motion.p>
+          <motion.div className="flex flex-col gap-4 sm:flex-row" variants={fadeInUp}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href={hero.primaryCta.link}
+                className="bg-primary-500 hover:bg-primary-600 inline-flex items-center justify-center rounded-lg px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:shadow-xl"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </Link>
-            <Link
-              href={hero.secondaryCta.link}
-              className="inline-flex items-center justify-center rounded-lg border border-white/40 bg-transparent px-8 py-4 text-lg font-medium text-white transition-all hover:bg-white/20"
-            >
-              {hero.secondaryCta.text}
-            </Link>
-          </div>
+                {hero.primaryCta.text}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="ml-2 h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link
+                href={hero.secondaryCta.link}
+                className="inline-flex items-center justify-center rounded-lg border border-white/40 bg-transparent px-8 py-4 text-lg font-medium text-white transition-all hover:bg-white/20"
+              >
+                {hero.secondaryCta.text}
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 transform animate-bounce">
+      <motion.div
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 transform"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 1.5,
+          duration: 0.5,
+          repeat: Infinity,
+          repeatType: 'reverse',
+          repeatDelay: 0.2,
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-8 w-8 text-white"
@@ -105,113 +261,171 @@ const HeroSection = () => {
             d="M19 14l-7 7m0 0l-7-7m7 7V3"
           />
         </svg>
-      </div>
+      </motion.div>
     </section>
   )
 }
 
 const ServicesSection = () => {
   const { services } = landingContent
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.2 })
 
   if (!services || services.items.length === 0) return null
 
   return (
     <section id="services" className="bg-white py-24 dark:bg-gray-900">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold md:text-5xl">{services.title}</h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">
+      <motion.div
+        ref={ref}
+        className="container mx-auto px-4"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
+        <motion.div className="mb-16 text-center" variants={fadeInUp}>
+          <motion.h2
+            className="mb-4 text-4xl font-bold text-gray-900 dark:text-white"
+            variants={fadeInUp}
+          >
+            {services.title}
+          </motion.h2>
+          <motion.p
+            className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400"
+            variants={fadeInUp}
+          >
             {services.description}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+        <motion.div
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+        >
           {services.items.map((service, index) => {
-            const IconComponent = serviceIconMap[service.icon] || FaIndustry
+            const IconComponent = serviceIconMap[service.icon as keyof typeof serviceIconMap]
 
             return (
-              <div key={index} className="group flex flex-col gap-8 md:flex-row">
-                {/* Service Image */}
-                <div className="relative h-80 w-full overflow-hidden rounded-xl md:w-1/2">
-                  <Image
-                    src={service.image || '/static/images/services/placeholder.jpg'}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                </div>
-
-                {/* Service Content */}
-                <div className="flex w-full flex-col justify-center md:w-1/2">
-                  <div className="mb-4 flex items-center">
-                    <div className="bg-primary-100 dark:bg-primary-900/30 mr-4 flex h-16 w-16 items-center justify-center rounded-full p-4">
-                      <IconComponent className="text-2xl text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold">{service.title}</h3>
-                  </div>
-
-                  <p className="mb-6 text-lg text-gray-600 dark:text-gray-400">
-                    {service.description}
-                  </p>
-
+              <motion.div
+                key={index}
+                className="rounded-lg border border-gray-200 bg-white p-8 shadow-md transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
+                variants={scaleIn}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              >
+                <motion.div
+                  className="bg-primary-100 text-primary-600 dark:bg-primary-900 dark:text-primary-400 mb-4 inline-flex rounded-full p-4"
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                >
+                  {IconComponent && <IconComponent className="h-6 w-6" />}
+                </motion.div>
+                <motion.h3
+                  className="mb-3 text-xl font-bold text-gray-900 dark:text-white"
+                  variants={fadeIn}
+                >
+                  {service.title}
+                </motion.h3>
+                <motion.p className="mb-4 text-gray-600 dark:text-gray-400" variants={fadeIn}>
+                  {service.description}
+                </motion.p>
+                <motion.div
+                  whileHover={{ x: 5 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                >
                   <Link
                     href={`#service-${index}`}
-                    className="text-primary-600 dark:text-primary-400 inline-flex items-center font-medium group-hover:underline"
+                    className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 inline-flex items-center"
                   >
                     Learn more
-                    <svg
+                    <motion.svg
+                      className="ml-2 h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
-                      className="ml-2 h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: 'loop',
+                        ease: 'easeInOut',
+                        repeatDelay: 1,
+                      }}
                     >
                       <path
-                        fillRule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M9 5l7 7-7 7"
+                      ></path>
+                    </motion.svg>
                   </Link>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             )
           })}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
 
 const MainFeaturesSection = () => {
   const { mainFeatures } = landingContent
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.2 })
 
   return (
     <section className="bg-gray-50 py-20 dark:bg-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">Nuestros Servicios</h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">
-            Nuestro equipo de profesionales certificados entrega excelencia en cada proyecto.
-          </p>
-        </div>
+      <motion.div
+        ref={ref}
+        className="container mx-auto px-4"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
+        <motion.div className="mb-16 text-center" variants={fadeInUp}>
+          <motion.h2 className="mb-4 text-3xl font-bold md:text-4xl" variants={fadeInUp}>
+            {mainFeatures.title}
+          </motion.h2>
+          <motion.p
+            className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400"
+            variants={fadeInUp}
+          >
+            {mainFeatures.description}
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
-          {mainFeatures.map((feature, index) => {
+        <motion.div className="grid grid-cols-1 gap-12 lg:grid-cols-3" variants={staggerContainer}>
+          {mainFeatures.items.map((feature, index) => {
             const IconComponent = featureIconMap[feature.icon] || FaBolt
 
             return (
-              <div key={index} className="flex flex-col items-center text-center">
-                <div className="bg-primary-500 dark:bg-primary-600 mb-6 rounded-full p-5">
+              <motion.div
+                key={index}
+                className="flex flex-col items-center text-center"
+                variants={scaleIn}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              >
+                <motion.div
+                  className="bg-primary-500 dark:bg-primary-600 mb-6 rounded-full p-5"
+                  whileHover={{ rotate: 360, scale: 1.1 }}
+                  transition={{ duration: 0.8, type: 'spring', stiffness: 200 }}
+                >
                   <IconComponent className="text-3xl text-white" />
-                </div>
-                <h3 className="mb-4 text-2xl font-bold">{feature.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
-              </div>
+                </motion.div>
+                <motion.h3 className="mb-4 text-2xl font-bold" variants={fadeIn}>
+                  {feature.title}
+                </motion.h3>
+                <motion.p className="text-gray-600 dark:text-gray-400" variants={fadeIn}>
+                  {feature.description}
+                </motion.p>
+              </motion.div>
             )
           })}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
@@ -337,106 +551,223 @@ const ProjectsSection = () => {
 
 const FeaturesGridSection = () => {
   const { features } = landingContent
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.2 })
 
   return (
     <section className="bg-gray-50 py-20 dark:bg-gray-800" id="features">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">{features.title}</h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">
+      <motion.div
+        ref={ref}
+        className="container mx-auto px-4"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
+        <motion.div className="mb-16 text-center" variants={fadeInUp}>
+          <motion.h2 className="mb-4 text-3xl font-bold md:text-4xl" variants={fadeInUp}>
+            {features.title}
+          </motion.h2>
+          <motion.p
+            className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400"
+            variants={fadeInUp}
+          >
             {features.description}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          variants={staggerContainer}
+        >
           {features.items.map((feature, index) => {
             const IconComponent = featureIconMap[feature.icon] || FiSettings
 
             return (
-              <div
+              <motion.div
                 key={index}
                 className="rounded-xl bg-white p-8 shadow-md transition-all hover:shadow-lg dark:bg-gray-700"
+                variants={scaleIn}
+                whileHover={{
+                  y: -8,
+                  boxShadow:
+                    '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                }}
               >
-                <IconComponent className="text-primary-500 mb-4 text-3xl" />
-                <h3 className="mb-3 text-xl font-bold">{feature.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
-              </div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  className="inline-block"
+                >
+                  <IconComponent className="text-primary-500 mb-4 text-3xl" />
+                </motion.div>
+                <motion.h3 className="mb-3 text-xl font-bold" variants={fadeIn}>
+                  {feature.title}
+                </motion.h3>
+                <motion.p className="text-gray-600 dark:text-gray-400" variants={fadeIn}>
+                  {feature.description}
+                </motion.p>
+              </motion.div>
             )
           })}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
 
 const TestimonialsSection = () => {
   const { testimonials } = landingContent
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.2 })
+
+  // Default testimonials background image
+  const defaultBgImage = '/static/images/hero.jpg'
+
+  // Use state to track if the primary image failed to load
+  const [bgImageSrc, setBgImageSrc] = useState<string>(testimonials?.image || defaultBgImage)
+  const [bgImageLoadFailed, setBgImageLoadFailed] = useState<boolean>(false)
+
+  // Effect to reset image source if testimonials.image changes
+  useEffect(() => {
+    setBgImageSrc(testimonials?.image || defaultBgImage)
+    setBgImageLoadFailed(false)
+  }, [testimonials?.image])
 
   if (!testimonials || !testimonials.testimonials.length) return null
 
   return (
     <section className="relative overflow-hidden py-24">
       {/* Background with overlay */}
-      <div className="absolute inset-0 z-0">
+      <motion.div
+        className="absolute inset-0 z-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <div className="relative h-full w-full">
-          <Image
-            src={testimonials.image || '/static/images/services/testimonials-bg.jpg'}
-            alt="Industrial Electrical Work"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/80"></div>
+          {!bgImageLoadFailed ? (
+            <Image
+              src={bgImageSrc}
+              alt="Testimonials Background"
+              fill
+              className="object-cover"
+              onError={() => {
+                // Only switch to default if we're not already using it
+                if (bgImageSrc !== defaultBgImage) {
+                  console.log('Testimonial background image failed to load, switching to default')
+                  setBgImageSrc(defaultBgImage)
+                  setBgImageLoadFailed(true)
+                }
+              }}
+            />
+          ) : (
+            <Image
+              src={defaultBgImage}
+              alt="Testimonials Background"
+              fill
+              className="object-cover"
+            />
+          )}
+          <motion.div
+            className="absolute inset-0 bg-black/80"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          ></motion.div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="relative z-10 container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold text-white md:text-5xl">{testimonials.title}</h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-300">{testimonials.description}</p>
-        </div>
+      <motion.div
+        ref={ref}
+        className="relative z-10 container mx-auto px-4"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
+        <motion.div className="mb-16 text-center" variants={fadeInUp}>
+          <motion.h2 className="mb-4 text-3xl font-bold text-white md:text-5xl" variants={fadeInUp}>
+            {testimonials.title}
+          </motion.h2>
+          <motion.p className="mx-auto max-w-3xl text-xl text-gray-300" variants={fadeInUp}>
+            {testimonials.description}
+          </motion.p>
+        </motion.div>
 
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <motion.div className="mx-auto max-w-6xl">
+          <motion.div
+            className="grid grid-cols-1 gap-8 lg:grid-cols-3"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+          >
             {testimonials.testimonials.map((testimonial, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="hover:border-primary-500 group flex h-full flex-col rounded-xl border border-white/10 bg-white/10 p-8 backdrop-blur-sm transition-all hover:bg-white/15"
+                variants={scaleIn}
+                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 15 }}
               >
                 {/* Quote icon */}
-                <div className="text-primary-400 mb-6">
-                  <svg
+                <motion.div
+                  className="text-primary-400 mb-6"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 + index * 0.1, duration: 0.5, type: 'spring' }}
+                >
+                  <motion.svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-10 w-10 opacity-80"
                     fill="currentColor"
                     viewBox="0 0 24 24"
+                    animate={{ rotate: [0, 10, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, repeatType: 'reverse' }}
                   >
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                </div>
+                  </motion.svg>
+                </motion.div>
 
-                <p className="flex-grow text-lg text-gray-200 italic">"{testimonial.quote}"</p>
+                <motion.p className="flex-grow text-lg text-gray-200 italic" variants={fadeIn}>
+                  "{testimonial.quote}"
+                </motion.p>
 
-                <div className="mt-auto flex items-start pt-8">
-                  <div className="flex-shrink-0">
-                    <div className="ring-primary-500 group-hover:ring-primary-500 relative mr-4 h-16 w-16 overflow-hidden rounded-full ring-2 transition-all">
-                      <Image
-                        src={testimonial.image || 'https://picsum.photos/200'}
-                        alt={testimonial.name}
-                        fill
-                        className="object-cover"
+                <motion.div className="mt-auto flex items-start pt-8" variants={fadeIn}>
+                  <motion.div className="flex-shrink-0" whileHover={{ scale: 1.1 }}>
+                    <motion.div
+                      className="ring-primary-500 group-hover:ring-primary-500 relative mr-4 h-16 w-16 overflow-hidden rounded-full ring-2 transition-all"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+                    >
+                      {/* Use a separate component for each testimonial profile image to manage its own state */}
+                      <TestimonialProfileImage
+                        image={testimonial.image}
+                        defaultImage={`/static/images/testimonial${(index % 3) + 1}.jpg`}
+                        name={testimonial.name}
                       />
-                    </div>
-                  </div>
-                  <div className="min-w-0 flex-grow">
-                    <h4 className="truncate font-bold text-white">{testimonial.name}</h4>
-                    <p className="truncate text-sm text-gray-300">{testimonial.title}</p>
-                  </div>
-                </div>
-              </div>
+                    </motion.div>
+                  </motion.div>
+                  <motion.div
+                    className="min-w-0 flex-grow"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4 + index * 0.1, duration: 0.5 }}
+                  >
+                    <motion.h4 className="truncate font-bold text-white" variants={fadeIn}>
+                      {testimonial.name}
+                    </motion.h4>
+                    <motion.p className="truncate text-sm text-gray-300" variants={fadeIn}>
+                      {testimonial.title}
+                    </motion.p>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             ))}
-          </div>
-        </div>
-      </div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
@@ -444,6 +775,8 @@ const TestimonialsSection = () => {
 const FaqSection = () => {
   const { faqs } = landingContent
   const [openIndex, setOpenIndex] = useState(-1)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: false, amount: 0.2 })
 
   if (!faqs || !faqs.questions || faqs.questions.length === 0) return null
 
@@ -453,37 +786,76 @@ const FaqSection = () => {
 
   return (
     <section className="bg-gray-50 py-20 dark:bg-gray-800">
-      <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold md:text-4xl">{faqs.title}</h2>
-          <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400">
+      <motion.div
+        ref={ref}
+        className="container mx-auto px-4"
+        variants={staggerContainer}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
+        <motion.div className="mb-16 text-center" variants={fadeInUp}>
+          <motion.h2 className="mb-4 text-3xl font-bold md:text-4xl" variants={fadeInUp}>
+            {faqs.title}
+          </motion.h2>
+          <motion.p
+            className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-400"
+            variants={fadeInUp}
+          >
             {faqs.description}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="mx-auto max-w-3xl">
+        <motion.div className="mx-auto max-w-3xl" variants={staggerContainer}>
           {faqs.questions.map((faq, index) => (
-            <div
+            <motion.div
               key={index}
               className="mb-4 overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700"
+              variants={fadeInUp}
+              custom={index}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ scale: 1.01 }}
             >
-              <button
+              <motion.button
                 className="flex w-full items-center justify-between bg-white p-5 text-left hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800"
                 onClick={() => toggleQuestion(index)}
+                whileTap={{ scale: 0.98 }}
               >
-                <span className="text-lg font-medium">{faq.question}</span>
-                <span className="text-primary-500 text-2xl">{openIndex === index ? '−' : '+'}</span>
-              </button>
+                <motion.span className="text-lg font-medium">{faq.question}</motion.span>
+                <motion.span
+                  className="text-primary-500 text-2xl"
+                  animate={{ rotate: openIndex === index ? 180 : 0 }}
+                  transition={{ duration: 0.3, type: 'spring' }}
+                >
+                  {openIndex === index ? '−' : '+'}
+                </motion.span>
+              </motion.button>
 
-              {openIndex === index && (
-                <div className="border-t border-gray-200 bg-gray-50 p-5 dark:border-gray-700 dark:bg-gray-800">
-                  <p className="text-gray-600 dark:text-gray-400">{faq.answer}</p>
-                </div>
-              )}
-            </div>
+              <AnimatePresence>
+                {openIndex === index && (
+                  <motion.div
+                    className="border-t border-gray-200 bg-gray-50 p-5 dark:border-gray-700 dark:bg-gray-800"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  >
+                    <motion.p
+                      className="text-gray-600 dark:text-gray-400"
+                      initial={{ y: -10, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.1 }}
+                    >
+                      {faq.answer}
+                    </motion.p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
@@ -883,13 +1255,13 @@ const Main4 = () => {
       <HeroSection />
       {landingContent.services && <ServicesSection />}
       {landingContent.projects && <ProjectsSection />}
-      {landingContent.mainFeatures?.length > 0 && <MainFeaturesSection />}
+      {landingContent.mainFeatures?.items?.length > 0 && <MainFeaturesSection />}
       {landingContent.features?.items?.length > 0 && <FeaturesGridSection />}
       {landingContent.testimonials && landingContent.testimonials.testimonials.length > 0 && (
         <TestimonialsSection />
       )}
-      {landingContent.faqs?.questions?.length > 0 && <FaqSection />}
       {landingContent.cta && <CtaSection />}
+      {landingContent.faqs?.questions?.length > 0 && <FaqSection />}
       {landingContent.contact && <ContactSection />}
     </div>
   )
