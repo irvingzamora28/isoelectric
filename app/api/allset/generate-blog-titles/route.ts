@@ -3,6 +3,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import { llmService } from '@/lib/llm'
 import { BlogTitleSuggestion } from '@/lib/llm/types'
+import siteMetadata from '@/data/siteMetadata'
 
 // For static export, we need to handle this differently
 export const dynamic = 'error'
@@ -15,8 +16,12 @@ export async function POST(request: NextRequest) {
     // Load the landing content
     const landingContent = await fs.readFile(landingContentFilePath, 'utf-8')
 
-    // Generate blog titles using the LLM service
-    const result = await llmService.generateBlogTitles(landingContent)
+    // Use the site's language setting
+    const contentLanguage = siteMetadata.language
+    console.log(`API: Generating blog titles in site language: ${contentLanguage}`)
+
+    // Generate blog titles using the LLM service with the site language
+    const result = await llmService.generateBlogTitles(landingContent, contentLanguage)
 
     if (result.error) {
       return NextResponse.json({ success: false, message: result.error }, { status: 500 })

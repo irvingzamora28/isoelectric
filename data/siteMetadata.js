@@ -5,7 +5,7 @@ const siteMetadata = {
   headerTitle: 'ISOELECTRIC',
   description:
     'AI-powered Next.js landing page generator for compelling content and SEO-optimized blog posts.',
-  language: 'en-us',
+  language: 'es-mx',
   theme: 'system', // system, dark or light
   siteUrl: 'https://allset-template.vercel.app',
   siteRepo: 'https://github.com',
@@ -19,7 +19,7 @@ const siteMetadata = {
   youtube: 'https://youtube.com',
   linkedin: 'https://www.linkedin.com',
   instagram: 'https://www.instagram.com',
-  locale: 'en-US',
+  locale: 'es-MX',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
   analytics: {
@@ -51,35 +51,35 @@ const siteMetadata = {
     // Please add your .env file and modify it according to your selection
     provider: 'buttondown',
   },
-  comments: {
-    // To use an analytics provider, include it in the content security policy
-    // in the `next.config.js` file. Choose a provider and configure the
-    // corresponding environment variables.
-    // https://vercel.com/docs/environment-variables
-    provider: 'giscus', // supported providers: giscus, utterances, disqus
-    giscusConfig: {
-      // Visit the link below, and follow the steps in the 'configuration' section
-      // https://giscus.app/
-      repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
-      repositoryId: process.env.NEXT_PUBLIC_GISCUS_REPOSITORY_ID,
-      category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
-      categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
-      mapping: 'pathname', // supported options: pathname, url, title
-      reactions: '1', // Emoji reactions: 1 = enable / 0 = disable
-      // Periodically transmit discussion metadata to the parent window: 1 = enable / 0 = disable
-      metadata: '0',
-      // theme example: light, dark, dark_dimmed, dark_high_contrast
-      // transparent_dark, preferred_color_scheme, custom
-      theme: 'light',
-      // theme when dark mode
-      darkTheme: 'transparent_dark',
-      // For custom theme, provide a URL to your CSS file
-      // For instance: https://giscus.app/themes/custom_example.css
-      themeURL: '',
-      // Sets the language attribute in giscus's HTML configuration
-      lang: 'en',
-    },
-  },
+  // comments: {
+  //   // To use an analytics provider, include it in the content security policy
+  //   // in the `next.config.js` file. Choose a provider and configure the
+  //   // corresponding environment variables.
+  //   // https://vercel.com/docs/environment-variables
+  //   provider: 'giscus', // supported providers: giscus, utterances, disqus
+  //   giscusConfig: {
+  //     // Visit the link below, and follow the steps in the 'configuration' section
+  //     // https://giscus.app/
+  //     repo: process.env.NEXT_PUBLIC_GISCUS_REPO,
+  //     repositoryId: process.env.NEXT_PUBLIC_GISCUS_REPOSITORY_ID,
+  //     category: process.env.NEXT_PUBLIC_GISCUS_CATEGORY,
+  //     categoryId: process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID,
+  //     mapping: 'pathname', // supported options: pathname, url, title
+  //     reactions: '1', // Emoji reactions: 1 = enable / 0 = disable
+  //     // Periodically transmit discussion metadata to the parent window: 1 = enable / 0 = disable
+  //     metadata: '0',
+  //     // theme example: light, dark, dark_dimmed, dark_high_contrast
+  //     // transparent_dark, preferred_color_scheme, custom
+  //     theme: 'light',
+  //     // theme when dark mode
+  //     darkTheme: 'transparent_dark',
+  //     // For custom theme, provide a URL to your CSS file
+  //     // For instance: https://giscus.app/themes/custom_example.css
+  //     themeURL: '',
+  //     // Sets the language attribute in giscus's HTML configuration
+  //     lang: 'en',
+  //   },
+  // },
   search: {
     provider: 'kbar', // kbar or algolia
     kbarConfig: {

@@ -55,7 +55,10 @@ Generate a complete JSON object that follows this structure:
       }
     ]
   },
-  "mainFeatures": [
+  "mainFeatures": {
+    "title": "Main Features",
+    "description": "Main Features description",
+    "items": [
     {
       "id": 1,
       "icon": "FaBolt",
@@ -77,7 +80,7 @@ Generate a complete JSON object that follows this structure:
       "description": "Feature 3 description",
       "image": "/placeholder.jpg"
     }
-  ],
+  ]},
   "features": {
     "title": "Features section title",
     "description": "Features section description",
@@ -102,6 +105,28 @@ Generate a complete JSON object that follows this structure:
       "link": "#"
     },
     "collectEmail": true
+  },
+  "stats": {
+    "title": "Stats section title",
+    "description": "Stats section description",
+    "items": [
+      {
+        "value": "98%",
+        "label": "User Satisfaction"
+      },
+      {
+        "value": "50+",
+        "label": "Items"
+      },
+      {
+        "value": "50K+",
+        "label": "Active Users"
+      },
+      {
+        "value": "5M+",
+        "label": "Item"
+      }
+    ]
   },
   "faqs": {
     "title": "Frequently Asked Questions",
@@ -149,9 +174,9 @@ Generate a complete JSON object that follows this structure:
         "price": "$9/month",
         "description": "Perfect for individuals",
         "features": [
-          "Feature 1",
-          "Feature 2",
-          "Feature 3"
+          { "text": "Feature 1" },
+          { "text": "Feature 2" },
+          { "text": "Feature 3" }
         ],
         "cta": {
           "text": "Get Started",
@@ -163,10 +188,10 @@ Generate a complete JSON object that follows this structure:
         "price": "$29/month",
         "description": "Ideal for small teams",
         "features": [
-          "All Basic features",
-          "Feature 4",
-          "Feature 5",
-          "Feature 6"
+          { "text": "All Basic features" },
+          { "text": "Feature 4" },
+          { "text": "Feature 5" },
+          { "text": "Feature 6" }
         ],
         "cta": {
           "text": "Get Started",
@@ -179,10 +204,10 @@ Generate a complete JSON object that follows this structure:
         "price": "Contact us",
         "description": "For large organizations",
         "features": [
-          "All Pro features",
-          "Feature 7",
-          "Feature 8",
-          "Feature 9"
+          { "text": "All Pro features" },
+          { "text": "Feature 7" },
+          { "text": "Feature 8" },
+          { "text": "Feature 9" }
         ],
         "cta": {
           "text": "Contact Sales",
@@ -333,40 +358,83 @@ export class LLMService {
   /**
    * Generate landing content based on user input
    * @param businessDescription Description of the business or SaaS product
+   * @param language The language code to generate content in (defaults to 'en-us')
    * @returns Generated landing content as JSON
    */
-  async generateLandingContent(businessDescription: string): Promise<LLMResponse> {
-    const prompt = LANDING_CONTENT_PROMPT + businessDescription
-    return this.provider.generateContent(prompt)
+  async generateLandingContent(
+    businessDescription: string,
+    language: string = 'en-us'
+  ): Promise<LLMResponse> {
+    // Get language instruction or default to English if language not supported
+    const languageInstruction =
+      this.languageInstructions[language] || this.languageInstructions['en-us']
+
+    // Add language instruction to the prompt
+    const promptWithLanguage = `${languageInstruction}\n\nGenerate the landing page content in ${language === 'es-mx' ? 'Spanish' : 'English'}.\n\n${LANDING_CONTENT_PROMPT}${businessDescription}`
+
+    return this.provider.generateContent(promptWithLanguage)
   }
 
   /**
    * Generate SEO blog titles based on landing page content
    * @param landingContent The landing page content JSON
+   * @param language The language code to generate titles in (defaults to 'en-us')
    * @returns Generated blog titles as JSON array
    */
-  async generateBlogTitles(landingContent: string): Promise<LLMResponse> {
-    const prompt = BLOG_TITLES_PROMPT + landingContent
-    return this.provider.generateContent(prompt)
+  async generateBlogTitles(
+    landingContent: string,
+    language: string = 'en-us'
+  ): Promise<LLMResponse> {
+    // Get language instruction or default to English if language not supported
+    const languageInstruction =
+      this.languageInstructions[language] || this.languageInstructions['en-us']
+
+    // Add language instruction to the prompt
+    const promptWithLanguage = `${languageInstruction}\n\n${BLOG_TITLES_PROMPT}${landingContent}`
+
+    return this.provider.generateContent(promptWithLanguage)
   }
 
   /**
-   * Generate full blog post content based on title and description
+   * Language instructions map for multilingual content generation
+   * This can be easily extended with more languages in the future
+   */
+  private languageInstructions: Record<string, string> = {
+    'en-us': 'Write this blog post in English (US). Use American English spelling and expressions.',
+    'es-mx':
+      'Write this blog post in Spanish (Mexican dialect). Ensure all content, including headings, lists, and tables are in Spanish. But keep the language professional.',
+    // Add more languages as needed, for example:
+    // 'fr-fr': 'Write this blog post in French (France). Ensure all content is in French...',
+    // 'pt-br': 'Write this blog post in Portuguese (Brazilian). Ensure all content is in Brazilian Portuguese...',
+  }
+
+  /**
+   * Generate blog content based on title and description
    * @param title The blog post title
    * @param description Brief description of the blog post
    * @param existingPosts Information about existing blog posts for internal linking
-   * @returns Generated blog post content in Markdown format
+   * @param language - The language code to generate content in (defaults to 'en-us')
    */
   async generateBlogContent(
     title: string,
     description: string,
-    existingPosts: string
-  ): Promise<LLMResponse> {
+    existingPostsInfo: string,
+    language: string = 'en-us'
+  ) {
+    // Get language instruction or default to English if language not supported
+    const languageInstruction =
+      this.languageInstructions[language] || this.languageInstructions['en-us']
+
     const prompt = BLOG_CONTENT_PROMPT.replace('{{title}}', title)
       .replace('{{description}}', description)
-      .replace('{{existingPosts}}', existingPosts)
+      .replace('{{existingPosts}}', existingPostsInfo)
 
-    return this.provider.generateContent(prompt)
+    // Add language instruction to the prompt
+    const promptWithLanguage = `${languageInstruction}\n\n${prompt}`
+
+    const result = await this.provider.generateContent(promptWithLanguage)
+
+    return result
   }
 }
 

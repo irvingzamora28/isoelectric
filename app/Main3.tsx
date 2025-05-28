@@ -69,7 +69,7 @@ const FeaturesSection = () => {
               role="tablist"
               aria-orientation="vertical"
             >
-              {landingContent.mainFeatures.map((feature) => {
+              {landingContent.mainFeatures.items.map((feature) => {
                 return (
                   <div
                     key={feature.title}
@@ -425,7 +425,7 @@ const PricingSection = () => {
                       className={`h-5 w-5 flex-none ${plan.highlighted ? 'text-slate-100' : 'text-slate-400'}`}
                       aria-hidden="true"
                     />
-                    <span className="ml-4">{feature}</span>
+                    <span className="ml-4">{feature.text}</span>
                   </li>
                 ))}
               </ul>
@@ -452,7 +452,7 @@ const Main3 = () => {
     <div>
       <main>
         {landingContent.hero && <HeroSection />}
-        {landingContent.mainFeatures?.length > 0 && <FeaturesSection />}
+        {landingContent.mainFeatures?.items?.length > 0 && <FeaturesSection />}
         {landingContent.features?.items?.length > 0 && <SecondaryFeaturesSection />}
         {landingContent.cta && <CallToActionSection />}
         {landingContent.gallery && (

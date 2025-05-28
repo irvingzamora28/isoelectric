@@ -3,6 +3,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import { llmService } from '@/lib/llm'
 import { LandingContent } from '@/lib/llm/types'
+import siteMetadata from '@/data/siteMetadata'
 
 // For static export, we need to handle this differently
 export const dynamic = 'error'
@@ -22,8 +23,12 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate landing content using the LLM service
-    const result = await llmService.generateLandingContent(description)
+    // Use the site's language setting
+    const contentLanguage = siteMetadata.language
+    console.log(`API: Generating landing content in site language: ${contentLanguage}`)
+
+    // Generate landing content using the LLM service with the site language
+    const result = await llmService.generateLandingContent(description, contentLanguage)
 
     if (result.error) {
       return NextResponse.json({ success: false, message: result.error }, { status: 500 })
